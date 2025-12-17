@@ -1,12 +1,11 @@
 # Gluetun Port Forward Sync
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Docker Image Size](https://img.shields.io/docker/image-size/go0ners/gluetun-pfw-sync/latest)](https://hub.docker.com/r/go0ners/gluetun-pfw-sync)
+[![Docker Pulls](https://img.shields.io/docker/pulls/go0ners/gluetun-pfw-sync)](https://hub.docker.com/r/go0ners/gluetun-pfw-sync)
+[![GitHub stars](https://img.shields.io/github/stars/Go0ners/gluetun-pfw-sync?style=social)](https://github.com/Go0ners/gluetun-pfw-sync)
+
 Synchronise automatiquement le port forwarded de Gluetun vers qBittorrent.
-
-## Construction de l'image
-
-```bash
-docker build -t gluetun-pfw-sync .
-```
 
 ## Utilisation
 
@@ -21,16 +20,15 @@ docker run -d \
   -e QBITTORRENT_USERNAME=admin \
   -e QBITTORRENT_PASSWORD=yourpassword \
   -e CHECK_INTERVAL=300 \
-  gluetun-pfw-sync
+  go0ners/gluetun-pfw-sync:latest
 ```
 
 ### Avec docker-compose
 
 ```yaml
-version: "3"
 services:
   gluetun-pfw-sync:
-    image: gluetun-pfw-sync
+    image: go0ners/gluetun-pfw-sync:latest
     container_name: gluetun-pfw-sync
     restart: unless-stopped
     depends_on:
@@ -42,6 +40,12 @@ services:
       - QBITTORRENT_PASSWORD=yourpassword
       - CHECK_INTERVAL=300
       - RETRY_INTERVAL=60
+```
+
+## Construction de l'image (développement)
+
+```bash
+docker build -t go0ners/gluetun-pfw-sync:latest .
 ```
 
 ## Variables d'environnement
@@ -81,7 +85,7 @@ Pour activer le mode DEBUG :
 ```bash
 docker run -d \
   -e LOG_LEVEL=DEBUG \
-  gluetun-pfw-sync
+  go0ners/gluetun-pfw-sync:latest
 ```
 
 ### Exemple de logs
