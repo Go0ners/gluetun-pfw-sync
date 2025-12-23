@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM --platform=linux/amd64 alpine:latest
 
 # Install dependencies
 RUN apk add --no-cache curl jq
